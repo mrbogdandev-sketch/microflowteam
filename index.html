@@ -14,13 +14,6 @@
         }
 
         @font-face {
-            font-family: 'ZagalovokText';
-            src: url('zagalovoktext.otf') format('opentype');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        @font-face {
             font-family: 'Text';
             src: url('text.otf') format('opentype');
             font-weight: normal;
@@ -110,37 +103,6 @@
             animation: floatSlow 35s ease-in-out infinite reverse;
         }
 
-        /* Телеграм-иконки в углах */
-        .telegram-corner {
-            position: fixed;
-            font-size: 24px;
-            color: rgba(202, 197, 255, 0.1);
-            z-index: -1;
-        }
-
-        .corner-1 {
-            top: 30px;
-            left: 30px;
-        }
-
-        .corner-2 {
-            top: 30px;
-            right: 30px;
-            transform: rotate(90deg);
-        }
-
-        .corner-3 {
-            bottom: 30px;
-            left: 30px;
-            transform: rotate(-90deg);
-        }
-
-        .corner-4 {
-            bottom: 30px;
-            right: 30px;
-            transform: rotate(180deg);
-        }
-
         /* Контейнер */
         .container {
             max-width: 1200px;
@@ -204,7 +166,6 @@
             display: block;
             position: relative;
             z-index: 2;
-            /* Убрана анимация при наведении */
         }
 
         .team-name {
@@ -270,7 +231,7 @@
 
         /* Заголовки секций */
         .section-title {
-            font-family: 'ZagalovokText', sans-serif;
+            font-family: 'Zagolovok', sans-serif;
             font-size: 42px;
             color: #CAC5FF;
             margin-bottom: 35px;
@@ -329,7 +290,7 @@
         }
 
         .feature-title {
-            font-family: 'ZagalovokText', sans-serif;
+            font-family: 'Zagolovok', sans-serif;
             font-size: 24px;
             color: #CAC5FF;
             margin-bottom: 15px;
@@ -342,93 +303,265 @@
             line-height: 1.6;
         }
 
-        /* Карточка проекта с 3D эффектом */
-        .project-card {
+        /* КАРТОЧКА ПРОЕКТА TAKE CAREOF THE PLANT - ПОЛНОСТЬЮ ПЕРЕРАБОТАНА */
+        .plant-project-card {
+            background: linear-gradient(135deg, 
+                rgba(30, 50, 40, 0.95) 0%,
+                rgba(40, 60, 45, 0.9) 50%,
+                rgba(35, 55, 42, 0.95) 100%);
+            backdrop-filter: blur(25px) saturate(200%);
+            -webkit-backdrop-filter: blur(25px) saturate(200%);
+            border-radius: 28px;
+            border: 1px solid rgba(110, 190, 80, 0.3);
+            box-shadow: 
+                0 20px 60px rgba(0, 20, 10, 0.4),
+                inset 0 1px 0 rgba(180, 220, 160, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+                0 0 0 1px rgba(90, 170, 70, 0.1);
+            padding: 0;
+            margin-bottom: 40px;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .plant-project-card:hover {
+            border-color: rgba(140, 210, 120, 0.5);
+            box-shadow: 
+                0 30px 80px rgba(0, 30, 15, 0.5),
+                inset 0 1px 0 rgba(200, 230, 180, 0.25),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+                0 0 0 1px rgba(110, 190, 80, 0.2);
+            transform: translateY(-5px);
+        }
+
+        /* Декоративные элементы растения */
+        .plant-decoration {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.15;
+        }
+
+        .leaf-1 {
+            top: -30px;
+            right: -20px;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(110, 190, 80, 0.3) 0%, transparent 70%);
+            border-radius: 60% 40% 70% 30% / 40% 60% 30% 70%;
+            transform: rotate(45deg);
+        }
+
+        .leaf-2 {
+            bottom: -40px;
+            left: -30px;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(90, 170, 70, 0.25) 0%, transparent 70%);
+            border-radius: 50% 70% 40% 60% / 60% 40% 70% 50%;
+            transform: rotate(-20deg);
+        }
+
+        .leaf-3 {
+            top: 30%;
+            left: 10%;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(140, 210, 120, 0.2) 0%, transparent 70%);
+            border-radius: 70% 30% 50% 50% / 30% 70% 50% 70%;
+        }
+
+        /* Внутренний контейнер карточки */
+        .plant-card-inner {
+            position: relative;
+            z-index: 2;
+            padding: 50px;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 50px;
+            gap: 60px;
             align-items: center;
-            perspective: 1200px;
         }
 
-        @media (max-width: 900px) {
-            .project-card {
+        @media (max-width: 1000px) {
+            .plant-card-inner {
                 grid-template-columns: 1fr;
                 gap: 40px;
-                perspective: 800px;
+                padding: 40px;
             }
         }
 
-        .project-image-container {
+        /* Блок изображения с 3D эффектом */
+        .plant-image-container {
             position: relative;
-            border-radius: 24px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            box-shadow: 
+                0 15px 40px rgba(0, 20, 10, 0.5),
+                0 0 0 1px rgba(110, 190, 80, 0.2);
             transform-style: preserve-3d;
-            transition: transform 0.15s ease-out;
-            will-change: transform;
-        }
-
-        /* Отключаем 3D эффект на мобильных устройствах */
-        @media (hover: hover) and (pointer: fine) {
-            .project-image-container {
-                will-change: transform;
-            }
-        }
-
-        .project-image {
+            perspective: 1200px;
+            transition: transform 0.4s ease;
             width: 100%;
-            height: 350px;
-            object-fit: cover;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        /* Сохраняем пропорции изображения 1280x692 (соотношение 1.85) */
+        .plant-image-container::before {
+            content: '';
+            display: block;
+            padding-top: 54.0625%; /* 692/1280 = 0.540625 = 54.0625% */
+        }
+
+        .plant-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
             display: block;
             transition: transform 0.15s ease-out;
             transform: translateZ(0);
         }
 
-        .project-content {
+        /* Отключаем 3D эффект на мобильных устройствах */
+        @media (hover: hover) and (pointer: fine) {
+            .plant-image-container {
+                will-change: transform;
+            }
+        }
+
+        /* Контент карточки */
+        .plant-content {
             padding: 10px 0;
         }
 
-        .project-title {
+        .plant-title {
             font-family: 'Zagolovok', sans-serif;
-            font-size: 36px;
-            color: #CAC5FF;
+            font-size: 42px;
+            color: #D4F0C4;
             margin-bottom: 25px;
             line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(110, 190, 80, 0.3);
+            position: relative;
+            display: inline-block;
         }
 
-        .project-description {
+        .plant-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #8CD278, #6EBE50);
+            border-radius: 2px;
+        }
+
+        .plant-description {
             font-family: 'Text', sans-serif;
             font-size: 18px;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(230, 245, 220, 0.95);
             margin-bottom: 30px;
             line-height: 1.7;
         }
 
-        .coming-soon {
+        .plant-description p {
+            margin-bottom: 20px;
+        }
+
+        /* Блок даты выхода */
+        .plant-release-info {
+            margin-top: 40px;
+        }
+
+        .plant-release-date {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            background: rgba(74, 89, 173, 0.25);
-            color: #CAC5FF;
-            padding: 16px 32px;
+            gap: 15px;
+            background: rgba(110, 190, 80, 0.15);
+            color: #D4F0C4;
+            padding: 18px 35px;
             border-radius: 50px;
             font-family: 'Text', sans-serif;
-            font-size: 17px;
+            font-size: 18px;
             font-weight: 600;
-            border: 1px solid rgba(202, 197, 255, 0.25);
+            border: 1px solid rgba(140, 210, 120, 0.3);
             backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .plant-release-date:hover {
+            background: rgba(110, 190, 80, 0.25);
+            transform: translateY(-3px);
+            border-color: rgba(160, 220, 140, 0.4);
+        }
+
+        .plant-release-date i {
+            color: #8CD278;
+            font-size: 20px;
+        }
+
+        /* Обратный отсчет */
+        .plant-countdown {
+            background: rgba(20, 35, 25, 0.6);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(110, 190, 80, 0.2);
+            backdrop-filter: blur(15px);
+            box-shadow: inset 0 2px 10px rgba(0, 10, 5, 0.2);
+        }
+
+        .countdown-title {
+            font-family: 'Text', sans-serif;
+            font-size: 18px;
+            color: rgba(230, 245, 220, 0.9);
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .plant-countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .countdown-cell {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 10px;
+            background: rgba(110, 190, 80, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(140, 210, 120, 0.15);
             transition: all 0.3s ease;
         }
 
-        .coming-soon:hover {
-            background: rgba(74, 89, 173, 0.35);
-            transform: translateY(-3px);
+        .countdown-cell:hover {
+            background: rgba(110, 190, 80, 0.15);
+            transform: translateY(-5px);
+            border-color: rgba(160, 220, 140, 0.25);
         }
 
-        .coming-soon i {
-            color: #CAC5FF;
-            font-size: 18px;
+        .countdown-number {
+            font-family: 'Zagolovok', sans-serif;
+            font-size: 36px;
+            color: #8CD278;
+            font-weight: bold;
+            line-height: 1;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 8px rgba(110, 190, 80, 0.3);
+        }
+
+        .countdown-label {
+            font-family: 'Text', sans-serif;
+            font-size: 13px;
+            color: rgba(200, 230, 190, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
         }
 
         /* Секция контактов */
@@ -439,7 +572,7 @@
         }
 
         .contact-subtitle {
-            font-family: 'ZagalovokText', sans-serif;
+            font-family: 'Zagolovok', sans-serif;
             font-size: 28px;
             color: #CAC5FF;
             margin-bottom: 30px;
@@ -522,6 +655,15 @@
             }
         }
 
+        @keyframes leafFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-15px) rotate(5deg);
+            }
+        }
+
         .fade-in {
             animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
             opacity: 0;
@@ -565,10 +707,6 @@
                 font-size: 36px;
             }
             
-            .project-image {
-                height: 300px;
-            }
-            
             .features {
                 grid-template-columns: 1fr;
                 gap: 25px;
@@ -579,8 +717,33 @@
                 height: 120px;
             }
             
+            .plant-card-inner {
+                padding: 35px 25px;
+                gap: 40px;
+            }
+            
+            .plant-title {
+                font-size: 36px;
+            }
+            
+            .plant-description {
+                font-size: 17px;
+            }
+            
+            .plant-countdown-grid {
+                gap: 10px;
+            }
+            
+            .countdown-number {
+                font-size: 28px;
+            }
+            
+            .countdown-label {
+                font-size: 12px;
+            }
+            
             /* Скрываем некоторые объекты на мобильных */
-            .floating-object, .telegram-corner {
+            .floating-object {
                 display: none;
             }
         }
@@ -633,7 +796,35 @@
                 width: 70px;
             }
             
-            .project-title {
+            .plant-card-inner {
+                padding: 30px 20px;
+            }
+            
+            .plant-title {
+                font-size: 32px;
+            }
+            
+            .plant-description {
+                font-size: 16px;
+            }
+            
+            .plant-release-date {
+                font-size: 16px;
+                padding: 16px 25px;
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .plant-countdown-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .countdown-cell {
+                padding: 15px 10px;
+            }
+            
+            .countdown-number {
                 font-size: 30px;
             }
             
@@ -660,6 +851,22 @@
                 font-size: 13px;
                 padding: 6px 16px;
             }
+            
+            .plant-title {
+                font-size: 28px;
+            }
+            
+            .plant-countdown-grid {
+                gap: 10px;
+            }
+            
+            .countdown-cell {
+                padding: 12px 8px;
+            }
+            
+            .countdown-number {
+                font-size: 26px;
+            }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -670,20 +877,6 @@
     <div class="floating-object object-2"></div>
     <div class="floating-object object-3"></div>
     <div class="floating-object object-4"></div>
-
-    <!-- Декоративные телеграм-иконки в углах -->
-    <div class="telegram-corner corner-1">
-        <i class="fab fa-telegram"></i>
-    </div>
-    <div class="telegram-corner corner-2">
-        <i class="fab fa-telegram"></i>
-    </div>
-    <div class="telegram-corner corner-3">
-        <i class="fab fa-telegram"></i>
-    </div>
-    <div class="telegram-corner corner-4">
-        <i class="fab fa-telegram"></i>
-    </div>
 
     <div class="container">
         <!-- Шапка - полностью переработанная -->
@@ -759,17 +952,55 @@
         <!-- Раздел "Наши проекты" -->
         <section class="glass fade-in delay-2">
             <h2 class="section-title">Наши проекты</h2>
-            <div class="project-card">
-                <div class="project-image-container" id="projectImage3D">
-                    <img src="1.jpg" alt="TakeCareOfThePlant" class="project-image">
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">TakeCareOfThePlant</h3>
-                    <p class="project-description">Инновационный Telegram-бот, где пользователи выращивают виртуальное растение. Увлекательная игра с механикой ухода, системой достижений и социальным взаимодействием.</p>
-                    <p class="project-description">Каждый день ваше растение требует внимания: полив, удобрение, лечение. Следите за его ростом, открывайте новые виды растений и соревнуйтесь с друзьями!</p>
-                    <span class="coming-soon">
-                        <i class="fas fa-clock"></i> Coming Soon
-                    </span>
+            
+            <!-- ОТДЕЛЬНАЯ КАРТОЧКА ПРОЕКТА TAKE CAREOF THE PLANT -->
+            <div class="plant-project-card fade-in">
+                <!-- Декоративные элементы растения -->
+                <div class="plant-decoration leaf-1" style="animation: leafFloat 20s ease-in-out infinite;"></div>
+                <div class="plant-decoration leaf-2" style="animation: leafFloat 25s ease-in-out infinite reverse;"></div>
+                <div class="plant-decoration leaf-3" style="animation: leafFloat 30s ease-in-out infinite;"></div>
+                
+                <div class="plant-card-inner">
+                    <div class="plant-image-container" id="plantImage3D">
+                        <img src="1.jpg" alt="TakeCareOfThePlant" class="plant-image">
+                    </div>
+                    
+                    <div class="plant-content">
+                        <h3 class="plant-title">TakeCareOfThePlant</h3>
+                        
+                        <div class="plant-description">
+                            <p>Инновационный Telegram-бот, где пользователи выращивают виртуальное растение. Увлекательная игра с механикой ухода, системой достижений и социальным взаимодействием.</p>
+                            <p>Каждый день ваше растение требует внимания: полив, удобрение, лечение. Следите за его ростом, открывайте новые виды растений и соревнуйтесь с друзьями!</p>
+                        </div>
+                        
+                        <div class="plant-release-info">
+                            <div class="plant-release-date">
+                                <i class="fas fa-calendar-alt"></i> Дата выхода: 01.01.2026
+                            </div>
+                            
+                            <div class="plant-countdown">
+                                <div class="countdown-title">До релиза осталось:</div>
+                                <div class="plant-countdown-grid">
+                                    <div class="countdown-cell">
+                                        <div class="countdown-number" id="days">00</div>
+                                        <div class="countdown-label">дней</div>
+                                    </div>
+                                    <div class="countdown-cell">
+                                        <div class="countdown-number" id="hours">00</div>
+                                        <div class="countdown-label">часов</div>
+                                    </div>
+                                    <div class="countdown-cell">
+                                        <div class="countdown-number" id="minutes">00</div>
+                                        <div class="countdown-label">минут</div>
+                                    </div>
+                                    <div class="countdown-cell">
+                                        <div class="countdown-number" id="seconds">00</div>
+                                        <div class="countdown-label">секунд</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -812,21 +1043,21 @@
                 });
             }, 100);
             
-            // 3D эффект для изображения проекта (только на ПК)
-            const projectImage = document.getElementById('projectImage3D');
+            // 3D ЭФФЕКТ ДЛЯ ИЗОБРАЖЕНИЯ ПРОЕКТА (только на ПК)
+            const plantImage = document.getElementById('plantImage3D');
             
-            if (projectImage && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+            if (plantImage && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
                 let isHovering = false;
                 let animationFrameId = null;
                 
-                projectImage.addEventListener('mouseenter', () => {
+                plantImage.addEventListener('mouseenter', () => {
                     isHovering = true;
                     if (animationFrameId) {
                         cancelAnimationFrame(animationFrameId);
                     }
                 });
                 
-                projectImage.addEventListener('mouseleave', () => {
+                plantImage.addEventListener('mouseleave', () => {
                     isHovering = false;
                     
                     // Плавный возврат в исходное положение
@@ -840,7 +1071,7 @@
                         // Плавное затухание с easeOut
                         const easeOut = 1 - Math.pow(1 - progress, 3);
                         
-                        projectImage.style.transform = `
+                        plantImage.style.transform = `
                             perspective(1000px) 
                             rotateX(${0 * (1 - easeOut)}deg) 
                             rotateY(${0 * (1 - easeOut)}deg) 
@@ -850,31 +1081,31 @@
                         if (progress < 1) {
                             animationFrameId = requestAnimationFrame(animateReturn);
                         } else {
-                            projectImage.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+                            plantImage.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
                         }
                     };
                     
                     animationFrameId = requestAnimationFrame(animateReturn);
                 });
                 
-                projectImage.addEventListener('mousemove', (e) => {
+                plantImage.addEventListener('mousemove', (e) => {
                     if (!isHovering) return;
                     
-                    const rect = projectImage.getBoundingClientRect();
+                    const rect = plantImage.getBoundingClientRect();
                     const x = e.clientX - rect.left;
                     const y = e.clientY - rect.top;
                     
                     const centerX = rect.width / 2;
                     const centerY = rect.height / 2;
                     
-                    // Уменьшили коэффициенты для менее резкого поворота
-                    const rotateY = (x - centerX) / centerX * 2.5; // Уменьшили с 5 до 2.5
-                    const rotateX = -(y - centerY) / centerY * 2.5; // Уменьшили с 5 до 2.5
+                    // Уменьшенные коэффициенты для менее резкого поворота
+                    const rotateY = (x - centerX) / centerX * 2.5;
+                    const rotateX = -(y - centerY) / centerY * 2.5;
                     
-                    // Уменьшили подъем
-                    const translateZ = 8; // Уменьшили с 15 до 8
+                    // Небольшой подъем
+                    const translateZ = 10;
                     
-                    projectImage.style.transform = `
+                    plantImage.style.transform = `
                         perspective(1000px) 
                         rotateX(${rotateX}deg) 
                         rotateY(${rotateY}deg) 
@@ -883,7 +1114,7 @@
                 });
             }
             
-            // Параллакс эффект для фоновых объектов (упрощенный)
+            // Параллакс эффект для фоновых объектов
             document.addEventListener('mousemove', (e) => {
                 const x = e.clientX / window.innerWidth;
                 const y = e.clientY / window.innerHeight;
@@ -915,6 +1146,39 @@
             fadeElements.forEach(el => {
                 observer.observe(el);
             });
+            
+            // Обратный отсчет до 01.01.2026 00:00:00
+            const countdownDate = new Date('January 1, 2026 00:00:00').getTime();
+            
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = countdownDate - now;
+                
+                if (distance < 0) {
+                    // Если дата уже прошла
+                    document.getElementById('days').textContent = '00';
+                    document.getElementById('hours').textContent = '00';
+                    document.getElementById('minutes').textContent = '00';
+                    document.getElementById('seconds').textContent = '00';
+                    return;
+                }
+                
+                // Рассчитываем дни, часы, минуты, секунды
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                // Отображаем результаты
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            }
+            
+            // Обновляем каждую секунду
+            updateCountdown();
+            const countdownInterval = setInterval(updateCountdown, 1000);
         });
     </script>
 </body>
