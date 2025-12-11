@@ -7,14 +7,14 @@
     <style>
         /* Подключаем кастомные шрифты */
         @font-face {
-            font-family: 'zagolovok';
+            font-family: 'Zagolovok';
             src: url('zagolovok.otf') format('opentype');
             font-weight: normal;
             font-style: normal;
         }
 
         @font-face {
-            font-family: 'text';
+            font-family: 'Text';
             src: url('text.otf') format('opentype');
             font-weight: normal;
             font-style: normal;
@@ -375,26 +375,17 @@
             border-radius: 70% 30% 50% 50% / 30% 70% 50% 70%;
         }
 
-        /* Внутренний контейнер карточки */
+        /* ИЗМЕНЕНО: Внутренний контейнер карточки - изображение всегда сверху */
         .plant-card-inner {
             position: relative;
             z-index: 2;
             padding: 40px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 40px;
-            align-items: center;
         }
 
-        @media (max-width: 1000px) {
-            .plant-card-inner {
-                grid-template-columns: 1fr;
-                gap: 30px;
-                padding: 30px;
-            }
-        }
-
-        /* Блок изображения с 3D эффектом */
+        /* Блок изображения с 3D эффектом - увеличенная чувствительность */
         .plant-image-container {
             position: relative;
             border-radius: 18px;
@@ -407,6 +398,7 @@
             transition: transform 0.4s ease;
             width: 100%;
             background: rgba(0, 0, 0, 0.1);
+            cursor: pointer;
         }
 
         .plant-image-container::before {
@@ -559,6 +551,172 @@
             letter-spacing: 1px;
         }
 
+        /* НОВЫЙ РАЗДЕЛ: НАШИ СПОНСОРЫ */
+        .sponsors-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .sponsors-description {
+            font-family: 'Text', sans-serif;
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        /* КАРТОЧКА СПОНСОРА */
+        .sponsor-card-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .sponsor-card {
+            background: linear-gradient(135deg, 
+                rgba(80, 60, 140, 0.95) 0%,
+                rgba(100, 80, 160, 0.9) 50%,
+                rgba(90, 70, 150, 0.95) 100%);
+            backdrop-filter: blur(25px) saturate(200%);
+            -webkit-backdrop-filter: blur(25px) saturate(200%);
+            border-radius: 24px;
+            border: 1px solid rgba(180, 160, 255, 0.3);
+            box-shadow: 
+                0 15px 40px rgba(40, 20, 80, 0.4),
+                inset 0 1px 0 rgba(220, 200, 255, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+                0 0 0 1px rgba(150, 130, 220, 0.1);
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            max-width: 400px;
+            width: 100%;
+            text-decoration: none;
+            display: block;
+        }
+
+        .sponsor-card:hover {
+            border-color: rgba(200, 180, 255, 0.5);
+            box-shadow: 
+                0 25px 60px rgba(60, 40, 100, 0.5),
+                inset 0 1px 0 rgba(240, 220, 255, 0.25),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+                0 0 0 1px rgba(170, 150, 240, 0.2);
+            transform: translateY(-5px);
+        }
+
+        /* Декоративные элементы для спонсора */
+        .sponsor-decoration {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.15;
+        }
+
+        .sponsor-star-1 {
+            top: -20px;
+            right: -20px;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(180, 160, 255, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: rotate(45deg);
+        }
+
+        .sponsor-star-2 {
+            bottom: -30px;
+            left: -20px;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(160, 140, 240, 0.25) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: rotate(-20deg);
+        }
+
+        /* Внутренний контейнер карточки спонсора */
+        .sponsor-card-inner {
+            position: relative;
+            z-index: 2;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+        }
+
+        /* Блок изображения спонсора с 3D эффектом */
+        .sponsor-image-container {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 
+                0 10px 30px rgba(40, 20, 80, 0.4),
+                0 0 0 1px rgba(180, 160, 255, 0.2);
+            transform-style: preserve-3d;
+            perspective: 1200px;
+            transition: transform 0.4s ease;
+            width: 100%;
+            max-width: 300px;
+            background: rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .sponsor-image-container::before {
+            content: '';
+            display: block;
+            padding-top: 100%; /* Квадратное изображение */
+        }
+
+        .sponsor-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.15s ease-out;
+            transform: translateZ(0);
+        }
+
+        /* Контент карточки спонсора */
+        .sponsor-content {
+            text-align: center;
+            padding: 5px 0;
+        }
+
+        .sponsor-title {
+            font-family: 'Zagolovok', sans-serif;
+            font-size: 28px;
+            color: #E8E4FF;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            text-shadow: 0 2px 8px rgba(180, 160, 255, 0.3);
+            position: relative;
+            display: inline-block;
+        }
+
+        .sponsor-title::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, #C8B4FF, #A894FF);
+            border-radius: 1px;
+        }
+
+        .sponsor-description {
+            font-family: 'Text', sans-serif;
+            font-size: 16px;
+            color: rgba(240, 235, 255, 0.95);
+            line-height: 1.5;
+        }
+
         /* Секция контактов */
         .contact-content {
             text-align: center;
@@ -659,6 +817,17 @@
             }
         }
 
+        @keyframes starPulse {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 0.15;
+            }
+            50% {
+                transform: scale(1.1) rotate(180deg);
+                opacity: 0.25;
+            }
+        }
+
         .fade-in {
             animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
             opacity: 0;
@@ -674,6 +843,10 @@
 
         .delay-3 {
             animation-delay: 0.4s;
+        }
+
+        .delay-4 {
+            animation-delay: 0.5s;
         }
 
         /* Адаптивность - ОПТИМИЗИРОВАНА ДЛЯ МОБИЛЬНЫХ */
@@ -740,6 +913,20 @@
             
             .countdown-label {
                 font-size: 10px;
+            }
+            
+            /* Спонсоры адаптивность */
+            .sponsor-card-inner {
+                padding: 25px 20px;
+                gap: 20px;
+            }
+            
+            .sponsor-title {
+                font-size: 24px;
+            }
+            
+            .sponsor-image-container {
+                max-width: 250px;
             }
             
             /* Скрываем некоторые объекты на мобильных */
@@ -811,6 +998,7 @@
             
             .plant-card-inner {
                 padding: 20px 15px;
+                gap: 20px;
             }
             
             .plant-title {
@@ -857,6 +1045,24 @@
             
             .countdown-number {
                 font-size: 20px;
+            }
+            
+            /* Спонсоры адаптивность */
+            .sponsor-card-inner {
+                padding: 20px 15px;
+                gap: 15px;
+            }
+            
+            .sponsor-title {
+                font-size: 20px;
+            }
+            
+            .sponsor-description {
+                font-size: 14px;
+            }
+            
+            .sponsor-image-container {
+                max-width: 200px;
             }
             
             .footer {
@@ -907,6 +1113,15 @@
                 padding: 14px 25px;
                 font-size: 15px;
             }
+            
+            /* Спонсоры адаптивность */
+            .sponsor-title {
+                font-size: 18px;
+            }
+            
+            .sponsor-image-container {
+                max-width: 180px;
+            }
         }
 
         /* Для очень маленьких экранов */
@@ -939,6 +1154,15 @@
             .plant-countdown-grid {
                 grid-template-columns: 1fr;
                 gap: 8px;
+            }
+            
+            /* Спонсоры адаптивность */
+            .sponsor-title {
+                font-size: 16px;
+            }
+            
+            .sponsor-image-container {
+                max-width: 160px;
             }
         }
     </style>
@@ -1034,6 +1258,7 @@
                 <div class="plant-decoration leaf-3" style="animation: leafFloat 30s ease-in-out infinite;"></div>
                 
                 <div class="plant-card-inner">
+                    <!-- ИЗОБРАЖЕНИЕ ВСЕГДА СВЕРХУ -->
                     <div class="plant-image-container" id="plantImage3D">
                         <img src="1.jpg" alt="TakeCareOfThePlant" class="plant-image">
                     </div>
@@ -1080,8 +1305,45 @@
 
         <div class="divider"></div>
 
-        <!-- Раздел "Свяжитесь с нами" -->
+        <!-- НОВЫЙ РАЗДЕЛ: НАШИ СПОНСОРЫ -->
         <section class="glass fade-in delay-3">
+            <h2 class="section-title">Наши Спонсоры</h2>
+            <div class="sponsors-content">
+                <p class="sponsors-description">
+                    Мы благодарим наших спонсоров за поддержку и веру в наши проекты. 
+                    Без вашей помощи создание инновационных решений было бы невозможным.
+                </p>
+                
+                <!-- КАРТОЧКА СПОНСОРА -->
+                <div class="sponsor-card-wrapper">
+                    <a href="https://t.me/Rai_VorotaBot" target="_blank" class="sponsor-card fade-in">
+                        <!-- Декоративные элементы спонсора -->
+                        <div class="sponsor-decoration sponsor-star-1" style="animation: starPulse 15s ease-in-out infinite;"></div>
+                        <div class="sponsor-decoration sponsor-star-2" style="animation: starPulse 20s ease-in-out infinite reverse;"></div>
+                        
+                        <div class="sponsor-card-inner">
+                            <!-- ИЗОБРАЖЕНИЕ СПОНСОРА С 3D ЭФФЕКТОМ -->
+                            <div class="sponsor-image-container" id="sponsorImage3D">
+                                <img src="sponsor1.jpg" alt="Чат 'РАЙ'" class="sponsor-image">
+                            </div>
+                            
+                            <div class="sponsor-content">
+                                <h3 class="sponsor-title">Чат "РАЙ"</h3>
+                                <p class="sponsor-description">
+                                    Официальный Telegram-бот сообщества "РАЙ". 
+                                    Присоединяйтесь к нашему удивительному сообществу!
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- Раздел "Свяжитесь с нами" -->
+        <section class="glass fade-in delay-4">
             <h2 class="section-title">Свяжитесь с нами</h2>
             <div class="contact-content">
                 <h3 class="contact-subtitle">Хочешь в команду? Напишите нам в телеграм!</h3>
@@ -1116,73 +1378,86 @@
                 });
             }, 100);
             
-            // 3D ЭФФЕКТ ДЛЯ ИЗОБРАЖЕНИЯ ПРОЕКТА (только на ПК)
+            // 3D ЭФФЕКТ ДЛЯ ИЗОБРАЖЕНИЯ ПРОЕКТА С УВЕЛИЧЕННОЙ ЧУВСТВИТЕЛЬНОСТЬЮ
             const plantImage = document.getElementById('plantImage3D');
+            const sponsorImage = document.getElementById('sponsorImage3D');
             
-            if (plantImage && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-                let isHovering = false;
-                let animationFrameId = null;
-                
-                plantImage.addEventListener('mouseenter', () => {
-                    isHovering = true;
-                    if (animationFrameId) {
-                        cancelAnimationFrame(animationFrameId);
-                    }
-                });
-                
-                plantImage.addEventListener('mouseleave', () => {
-                    isHovering = false;
+            // Функция для создания 3D эффекта
+            function create3DEffect(element) {
+                if (element && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+                    let isHovering = false;
+                    let animationFrameId = null;
                     
-                    // Плавный возврат в исходное положение
-                    const startTime = Date.now();
-                    const duration = 200;
-                    
-                    const animateReturn = () => {
-                        const elapsed = Date.now() - startTime;
-                        const progress = Math.min(elapsed / duration, 1);
-                        
-                        const easeOut = 1 - Math.pow(1 - progress, 3);
-                        
-                        plantImage.style.transform = `
-                            perspective(1000px) 
-                            rotateX(${0 * (1 - easeOut)}deg) 
-                            rotateY(${0 * (1 - easeOut)}deg) 
-                            translateZ(${0 * (1 - easeOut)}px)
-                        `;
-                        
-                        if (progress < 1) {
-                            animationFrameId = requestAnimationFrame(animateReturn);
-                        } else {
-                            plantImage.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+                    element.addEventListener('mouseenter', () => {
+                        isHovering = true;
+                        if (animationFrameId) {
+                            cancelAnimationFrame(animationFrameId);
                         }
-                    };
+                    });
                     
-                    animationFrameId = requestAnimationFrame(animateReturn);
-                });
-                
-                plantImage.addEventListener('mousemove', (e) => {
-                    if (!isHovering) return;
+                    element.addEventListener('mouseleave', () => {
+                        isHovering = false;
+                        
+                        // Плавный возврат в исходное положение
+                        const startTime = Date.now();
+                        const duration = 300;
+                        
+                        const animateReturn = () => {
+                            const elapsed = Date.now() - startTime;
+                            const progress = Math.min(elapsed / duration, 1);
+                            
+                            const easeOut = 1 - Math.pow(1 - progress, 4);
+                            
+                            element.style.transform = `
+                                perspective(1200px) 
+                                rotateX(${0 * (1 - easeOut)}deg) 
+                                rotateY(${0 * (1 - easeOut)}deg) 
+                                translateZ(${0 * (1 - easeOut)}px)
+                                scale(${1 + (0 * (1 - easeOut))})
+                            `;
+                            
+                            if (progress < 1) {
+                                animationFrameId = requestAnimationFrame(animateReturn);
+                            } else {
+                                element.style.transform = 'perspective(1200px) rotateX(0) rotateY(0) translateZ(0) scale(1)';
+                            }
+                        };
+                        
+                        animationFrameId = requestAnimationFrame(animateReturn);
+                    });
                     
-                    const rect = plantImage.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    
-                    const rotateY = (x - centerX) / centerX * 2.5;
-                    const rotateX = -(y - centerY) / centerY * 2.5;
-                    
-                    const translateZ = 10;
-                    
-                    plantImage.style.transform = `
-                        perspective(1000px) 
-                        rotateX(${rotateX}deg) 
-                        rotateY(${rotateY}deg) 
-                        translateZ(${translateZ}px)
-                    `;
-                });
+                    element.addEventListener('mousemove', (e) => {
+                        if (!isHovering) return;
+                        
+                        const rect = element.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+                        
+                        // УВЕЛИЧЕННЫЕ КОЭФФИЦИЕНТЫ ДЛЯ БОЛЬШЕЙ ЧУВСТВИТЕЛЬНОСТИ
+                        const rotateY = (x - centerX) / centerX * 8;
+                        const rotateX = -(y - centerY) / centerY * 8;
+                        
+                        // Увеличиваем подъем и добавляем масштабирование
+                        const translateZ = 25;
+                        const scale = 1.05;
+                        
+                        element.style.transform = `
+                            perspective(1200px) 
+                            rotateX(${rotateX}deg) 
+                            rotateY(${rotateY}deg) 
+                            translateZ(${translateZ}px)
+                            scale(${scale})
+                        `;
+                    });
+                }
             }
+            
+            // Применяем 3D эффект к обоим изображениям
+            create3DEffect(plantImage);
+            create3DEffect(sponsorImage);
             
             // Параллакс эффект для фоновых объектов
             document.addEventListener('mousemove', (e) => {
