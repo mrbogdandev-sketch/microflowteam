@@ -55,6 +55,73 @@
             z-index: -1;
         }
 
+        /* Кнопка управления музыкой */
+        .music-control {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            z-index: 1000;
+            background: rgba(74, 89, 173, 0.3);
+            border: 1px solid rgba(202, 197, 255, 0.3);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .music-control:hover {
+            background: rgba(74, 89, 173, 0.4);
+            transform: scale(1.1);
+            border-color: rgba(202, 197, 255, 0.5);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .music-control i {
+            font-size: 24px;
+            color: #CAC5FF;
+            transition: all 0.3s ease;
+        }
+
+        .music-control.muted i {
+            color: rgba(202, 197, 255, 0.5);
+        }
+
+        .music-control.muted:hover i {
+            color: #CAC5FF;
+        }
+
+        /* Индикатор громкости */
+        .volume-indicator {
+            position: fixed;
+            top: 100px;
+            right: 40px;
+            z-index: 999;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 10px 15px;
+            font-family: 'Text', sans-serif;
+            font-size: 14px;
+            color: #CAC5FF;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            border: 1px solid rgba(202, 197, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .volume-indicator.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* Анимированные фоновые объекты */
         .floating-object {
             position: fixed;
@@ -933,6 +1000,25 @@
                 max-width: 250px;
             }
             
+            /* Кнопка музыки на мобильных */
+            .music-control {
+                top: 15px;
+                right: 15px;
+                width: 50px;
+                height: 50px;
+            }
+            
+            .music-control i {
+                font-size: 20px;
+            }
+            
+            .volume-indicator {
+                top: 75px;
+                right: 30px;
+                font-size: 12px;
+                padding: 8px 12px;
+            }
+            
             /* Скрываем некоторые объекты на мобильных */
             .floating-object {
                 display: none;
@@ -1173,6 +1259,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Аудио элемент для фоновой музыки -->
+    <audio id="backgroundMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио элемент.
+    </audio>
+
+    <!-- Кнопка управления музыкой -->
+    <div class="music-control" id="musicControl">
+        <i class="fas fa-volume-up"></i>
+    </div>
+
+    <!-- Индикатор громкости -->
+    <div class="volume-indicator" id="volumeIndicator">
+        Музыка: <span id="volumeStatus">Вкл</span>
+    </div>
+
     <!-- Анимированные фоновые объекты -->
     <div class="floating-object object-1"></div>
     <div class="floating-object object-2"></div>
@@ -1524,6 +1626,91 @@
             
             updateCountdown();
             const countdownInterval = setInterval(updateCountdown, 1000);
+            
+            // УПРАВЛЕНИЕ ФОНОВОЙ МУЗЫКОЙ
+            const backgroundMusic = document.getElementById('backgroundMusic');
+            const musicControl = document.getElementById('musicControl');
+            const volumeIndicator = document.getElementById('volumeIndicator');
+            const volumeStatus = document.getElementById('volumeStatus');
+            
+            let isMusicPlaying = true;
+            let volumeIndicatorTimeout;
+            
+            // Автовоспроизведение музыки с задержкой для лучшего UX
+            setTimeout(() => {
+                backgroundMusic.volume = 0.5; // Устанавливаем громкость 50%
+                backgroundMusic.play().catch(error => {
+                    console.log('Автовоспроизведение заблокировано браузером. Пользователь должен взаимодействовать со страницей.');
+                    isMusicPlaying = false;
+                    musicControl.classList.add('muted');
+                    musicControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                    volumeStatus.textContent = 'Выкл';
+                });
+            }, 1000);
+            
+            // Функция показа индикатора громкости
+            function showVolumeIndicator() {
+                volumeIndicator.classList.add('show');
+                clearTimeout(volumeIndicatorTimeout);
+                volumeIndicatorTimeout = setTimeout(() => {
+                    volumeIndicator.classList.remove('show');
+                }, 1500);
+            }
+            
+            // Обработчик клика по кнопке управления музыкой
+            musicControl.addEventListener('click', function() {
+                if (isMusicPlaying) {
+                    backgroundMusic.pause();
+                    this.classList.add('muted');
+                    this.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                    volumeStatus.textContent = 'Выкл';
+                } else {
+                    backgroundMusic.play();
+                    this.classList.remove('muted');
+                    this.innerHTML = '<i class="fas fa-volume-up"></i>';
+                    volumeStatus.textContent = 'Вкл';
+                }
+                isMusicPlaying = !isMusicPlaying;
+                showVolumeIndicator();
+            });
+            
+            // Обработчик нажатия клавиш для управления музыкой
+            document.addEventListener('keydown', function(e) {
+                // Пробел для воспроизведения/паузы
+                if (e.code === 'Space' && !e.target.matches('input, textarea')) {
+                    e.preventDefault();
+                    musicControl.click();
+                }
+                
+                // Стрелки вверх/вниз для регулировки громкости
+                if (e.code === 'ArrowUp' || e.code === 'ArrowDown') {
+                    e.preventDefault();
+                    let currentVolume = backgroundMusic.volume;
+                    
+                    if (e.code === 'ArrowUp') {
+                        backgroundMusic.volume = Math.min(1, currentVolume + 0.1);
+                        volumeStatus.textContent = 'Громче';
+                    } else if (e.code === 'ArrowDown') {
+                        backgroundMusic.volume = Math.max(0, currentVolume - 0.1);
+                        volumeStatus.textContent = 'Тише';
+                    }
+                    
+                    showVolumeIndicator();
+                    
+                    // Обновляем индикатор через 1 секунду
+                    setTimeout(() => {
+                        volumeStatus.textContent = isMusicPlaying ? 'Вкл' : 'Выкл';
+                    }, 1000);
+                }
+            });
+            
+            // Показываем индикатор при первом посещении
+            setTimeout(() => {
+                if (isMusicPlaying) {
+                    volumeIndicator.textContent = 'Фоновая музыка включена. Нажмите пробел для управления.';
+                    showVolumeIndicator();
+                }
+            }, 2000);
         });
     </script>
 </body>
