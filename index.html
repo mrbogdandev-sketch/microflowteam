@@ -377,21 +377,21 @@
             line-height: 1.5;
         }
 
-        /* КАРТОЧКА ПРОЕКТА TAKE CAREOF THE PLANT */
-        .plant-project-card {
+        /* КАРТОЧКА ПРОЕКТА SERVER BOT - ОБНОВЛЕННАЯ (СЕРЫЕ/ЧЕРНЫЕ ЦВЕТА) */
+        .server-project-card {
             background: linear-gradient(135deg, 
-                rgba(30, 50, 40, 0.95) 0%,
-                rgba(40, 60, 45, 0.9) 50%,
-                rgba(35, 55, 42, 0.95) 100%);
+                rgba(40, 45, 50, 0.95) 0%,
+                rgba(50, 55, 60, 0.9) 50%,
+                rgba(30, 35, 40, 0.95) 100%);
             backdrop-filter: blur(25px) saturate(200%);
             -webkit-backdrop-filter: blur(25px) saturate(200%);
             border-radius: 24px;
-            border: 1px solid rgba(110, 190, 80, 0.3);
+            border: 1px solid rgba(120, 130, 140, 0.3);
             box-shadow: 
-                0 15px 40px rgba(0, 20, 10, 0.4),
-                inset 0 1px 0 rgba(180, 220, 160, 0.2),
+                0 15px 40px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(200, 200, 200, 0.2),
                 inset 0 -1px 0 rgba(0, 0, 0, 0.2),
-                0 0 0 1px rgba(90, 170, 70, 0.1);
+                0 0 0 1px rgba(90, 100, 110, 0.1);
             padding: 0;
             margin-bottom: 30px;
             overflow: hidden;
@@ -399,55 +399,56 @@
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .plant-project-card:hover {
-            border-color: rgba(140, 210, 120, 0.5);
+        .server-project-card:hover {
+            border-color: rgba(160, 170, 180, 0.5);
             box-shadow: 
-                0 25px 60px rgba(0, 30, 15, 0.5),
-                inset 0 1px 0 rgba(200, 230, 180, 0.25),
+                0 25px 60px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(220, 220, 220, 0.25),
                 inset 0 -1px 0 rgba(0, 0, 0, 0.25),
-                0 0 0 1px rgba(110, 190, 80, 0.2);
+                0 0 0 1px rgba(110, 120, 130, 0.2);
             transform: translateY(-4px);
         }
 
-        /* Декоративные элементы растения */
-        .plant-decoration {
+        /* Декоративные элементы сервера */
+        .server-decoration {
             position: absolute;
             pointer-events: none;
             z-index: 1;
             opacity: 0.15;
         }
 
-        .leaf-1 {
+        .server-chip-1 {
             top: -30px;
             right: -20px;
             width: 150px;
             height: 150px;
-            background: radial-gradient(circle, rgba(110, 190, 80, 0.3) 0%, transparent 70%);
-            border-radius: 60% 40% 70% 30% / 40% 60% 30% 70%;
+            background: radial-gradient(circle, rgba(100, 110, 120, 0.3) 0%, transparent 70%);
+            border-radius: 20%;
             transform: rotate(45deg);
         }
 
-        .leaf-2 {
+        .server-chip-2 {
             bottom: -40px;
             left: -30px;
             width: 120px;
             height: 120px;
-            background: radial-gradient(circle, rgba(90, 170, 70, 0.25) 0%, transparent 70%);
-            border-radius: 50% 70% 40% 60% / 60% 40% 70% 50%;
+            background: radial-gradient(circle, rgba(80, 90, 100, 0.25) 0%, transparent 70%);
+            border-radius: 20%;
             transform: rotate(-20deg);
         }
 
-        .leaf-3 {
+        .server-circuit {
             top: 30%;
             left: 10%;
             width: 80px;
             height: 80px;
-            background: radial-gradient(circle, rgba(140, 210, 120, 0.2) 0%, transparent 70%);
-            border-radius: 70% 30% 50% 50% / 30% 70% 50% 70%;
+            background: radial-gradient(circle, rgba(140, 150, 160, 0.2) 0%, transparent 70%);
+            border-radius: 10%;
+            transform: rotate(15deg);
         }
 
-        /* ИЗМЕНЕНО: Внутренний контейнер карточки - изображение всегда сверху */
-        .plant-card-inner {
+        /* Внутренний контейнер карточки */
+        .server-card-inner {
             position: relative;
             z-index: 2;
             padding: 40px;
@@ -456,14 +457,14 @@
             gap: 40px;
         }
 
-        /* Блок изображения с 3D эффектом - увеличенная чувствительность */
-        .plant-image-container {
+        /* Блок изображения с 3D эффектом */
+        .server-image-container {
             position: relative;
             border-radius: 18px;
             overflow: hidden;
             box-shadow: 
-                0 10px 30px rgba(0, 20, 10, 0.4),
-                0 0 0 1px rgba(110, 190, 80, 0.2);
+                0 10px 30px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(120, 130, 140, 0.2);
             transform-style: preserve-3d;
             perspective: 1200px;
             transition: transform 0.4s ease;
@@ -472,13 +473,13 @@
             cursor: pointer;
         }
 
-        .plant-image-container::before {
+        .server-image-container::before {
             content: '';
             display: block;
             padding-top: 54.0625%;
         }
 
-        .plant-image {
+        .server-image {
             position: absolute;
             top: 0;
             left: 0;
@@ -491,97 +492,97 @@
         }
 
         /* Контент карточки */
-        .plant-content {
+        .server-content {
             padding: 5px 0;
         }
 
-        .plant-title {
+        .server-title {
             font-family: 'Zagolovok', sans-serif;
             font-size: 32px;
-            color: #D4F0C4;
+            color: #D4D8E0;
             margin-bottom: 20px;
             line-height: 1.2;
-            text-shadow: 0 2px 8px rgba(110, 190, 80, 0.3);
+            text-shadow: 0 2px 8px rgba(120, 130, 140, 0.3);
             position: relative;
             display: inline-block;
         }
 
-        .plant-title::after {
+        .server-title::after {
             content: '';
             position: absolute;
             bottom: -8px;
             left: 0;
             width: 60px;
             height: 2px;
-            background: linear-gradient(90deg, #8CD278, #6EBE50);
+            background: linear-gradient(90deg, #8C96A0, #6E7882);
             border-radius: 1px;
         }
 
-        .plant-description {
+        .server-description {
             font-family: 'Text', sans-serif;
             font-size: 16px;
-            color: rgba(230, 245, 220, 0.95);
+            color: rgba(230, 235, 240, 0.95);
             margin-bottom: 25px;
             line-height: 1.6;
         }
 
-        .plant-description p {
+        .server-description p {
             margin-bottom: 15px;
         }
 
         /* Блок даты выхода */
-        .plant-release-info {
+        .server-release-info {
             margin-top: 30px;
         }
 
-        .plant-release-date {
+        .server-release-date {
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            background: rgba(110, 190, 80, 0.15);
-            color: #D4F0C4;
+            background: rgba(100, 110, 120, 0.15);
+            color: #D4D8E0;
             padding: 15px 25px;
             border-radius: 50px;
             font-family: 'Text', sans-serif;
             font-size: 16px;
             font-weight: 600;
-            border: 1px solid rgba(140, 210, 120, 0.3);
+            border: 1px solid rgba(140, 150, 160, 0.3);
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
             margin-bottom: 25px;
         }
 
-        .plant-release-date:hover {
-            background: rgba(110, 190, 80, 0.25);
+        .server-release-date:hover {
+            background: rgba(100, 110, 120, 0.25);
             transform: translateY(-2px);
-            border-color: rgba(160, 220, 140, 0.4);
+            border-color: rgba(160, 170, 180, 0.4);
         }
 
-        .plant-release-date i {
-            color: #8CD278;
+        .server-release-date i {
+            color: #8C96A0;
             font-size: 18px;
         }
 
         /* Обратный отсчет */
-        .plant-countdown {
-            background: rgba(20, 35, 25, 0.6);
+        .server-countdown {
+            background: rgba(20, 25, 30, 0.6);
             border-radius: 18px;
             padding: 25px;
-            border: 1px solid rgba(110, 190, 80, 0.2);
+            border: 1px solid rgba(100, 110, 120, 0.2);
             backdrop-filter: blur(15px);
-            box-shadow: inset 0 2px 8px rgba(0, 10, 5, 0.2);
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         .countdown-title {
             font-family: 'Text', sans-serif;
             font-size: 16px;
-            color: rgba(230, 245, 220, 0.9);
+            color: rgba(230, 235, 240, 0.9);
             text-align: center;
             margin-bottom: 20px;
             font-weight: 600;
         }
 
-        .plant-countdown-grid {
+        .server-countdown-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 12px;
@@ -592,32 +593,32 @@
             flex-direction: column;
             align-items: center;
             padding: 15px 8px;
-            background: rgba(110, 190, 80, 0.1);
+            background: rgba(100, 110, 120, 0.1);
             border-radius: 12px;
-            border: 1px solid rgba(140, 210, 120, 0.15);
+            border: 1px solid rgba(140, 150, 160, 0.15);
             transition: all 0.3s ease;
         }
 
         .countdown-cell:hover {
-            background: rgba(110, 190, 80, 0.15);
+            background: rgba(100, 110, 120, 0.15);
             transform: translateY(-4px);
-            border-color: rgba(160, 220, 140, 0.25);
+            border-color: rgba(160, 170, 180, 0.25);
         }
 
         .countdown-number {
             font-family: 'Zagolovok', sans-serif;
             font-size: 28px;
-            color: #8CD278;
+            color: #8C96A0;
             font-weight: bold;
             line-height: 1;
             margin-bottom: 5px;
-            text-shadow: 0 2px 6px rgba(110, 190, 80, 0.3);
+            text-shadow: 0 2px 6px rgba(100, 110, 120, 0.3);
         }
 
         .countdown-label {
             font-family: 'Text', sans-serif;
             font-size: 12px;
-            color: rgba(200, 230, 190, 0.8);
+            color: rgba(200, 210, 220, 0.8);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -879,12 +880,12 @@
             }
         }
 
-        @keyframes leafFloat {
+        @keyframes serverFloat {
             0%, 100% {
                 transform: translateY(0) rotate(0deg);
             }
             50% {
-                transform: translateY(-12px) rotate(5deg);
+                transform: translateY(-12px) rotate(3deg);
             }
         }
 
@@ -961,20 +962,20 @@
                 margin-bottom: 20px;
             }
             
-            .plant-card-inner {
+            .server-card-inner {
                 padding: 25px 20px;
                 gap: 25px;
             }
             
-            .plant-title {
+            .server-title {
                 font-size: 26px;
             }
             
-            .plant-description {
+            .server-description {
                 font-size: 15px;
             }
             
-            .plant-countdown-grid {
+            .server-countdown-grid {
                 gap: 8px;
             }
             
@@ -1086,28 +1087,28 @@
                 font-size: 14px;
             }
             
-            .plant-card-inner {
+            .server-card-inner {
                 padding: 20px 15px;
                 gap: 20px;
             }
             
-            .plant-title {
+            .server-title {
                 font-size: 22px;
                 margin-bottom: 15px;
             }
             
-            .plant-title::after {
+            .server-title::after {
                 width: 50px;
                 height: 2px;
                 bottom: -6px;
             }
             
-            .plant-description {
+            .server-description {
                 font-size: 14px;
                 margin-bottom: 20px;
             }
             
-            .plant-release-date {
+            .server-release-date {
                 font-size: 14px;
                 padding: 12px 20px;
                 width: 100%;
@@ -1115,7 +1116,7 @@
                 margin-bottom: 20px;
             }
             
-            .plant-countdown {
+            .server-countdown {
                 padding: 20px;
             }
             
@@ -1124,7 +1125,7 @@
                 margin-bottom: 15px;
             }
             
-            .plant-countdown-grid {
+            .server-countdown-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 10px;
             }
@@ -1179,11 +1180,11 @@
                 padding: 5px 12px;
             }
             
-            .plant-title {
+            .server-title {
                 font-size: 20px;
             }
             
-            .plant-countdown-grid {
+            .server-countdown-grid {
                 gap: 8px;
             }
             
@@ -1237,11 +1238,11 @@
                 font-size: 20px;
             }
             
-            .plant-title {
+            .server-title {
                 font-size: 18px;
             }
             
-            .plant-countdown-grid {
+            .server-countdown-grid {
                 grid-template-columns: 1fr;
                 gap: 8px;
             }
@@ -1356,35 +1357,35 @@
         <section class="glass fade-in delay-2">
             <h2 class="section-title">Наши проекты</h2>
             
-            <!-- ОТДЕЛЬНАЯ КАРТОЧКА ПРОЕКТА TAKE CAREOF THE PLANT -->
-            <div class="plant-project-card fade-in">
-                <!-- Декоративные элементы растения -->
-                <div class="plant-decoration leaf-1" style="animation: leafFloat 20s ease-in-out infinite;"></div>
-                <div class="plant-decoration leaf-2" style="animation: leafFloat 25s ease-in-out infinite reverse;"></div>
-                <div class="plant-decoration leaf-3" style="animation: leafFloat 30s ease-in-out infinite;"></div>
+            <!-- ОТДЕЛЬНАЯ КАРТОЧКА ПРОЕКТА SERVER BOT -->
+            <div class="server-project-card fade-in">
+                <!-- Декоративные элементы сервера -->
+                <div class="server-decoration server-chip-1" style="animation: serverFloat 20s ease-in-out infinite;"></div>
+                <div class="server-decoration server-chip-2" style="animation: serverFloat 25s ease-in-out infinite reverse;"></div>
+                <div class="server-decoration server-circuit" style="animation: serverFloat 30s ease-in-out infinite;"></div>
                 
-                <div class="plant-card-inner">
+                <div class="server-card-inner">
                     <!-- ИЗОБРАЖЕНИЕ ВСЕГДА СВЕРХУ -->
-                    <div class="plant-image-container" id="plantImage3D">
-                        <img src="1.jpg" alt="TakeCareOfThePlant" class="plant-image">
+                    <div class="server-image-container" id="serverImage3D">
+                        <img src="1.jpg" alt="Server Bot" class="server-image">
                     </div>
                     
-                    <div class="plant-content">
-                        <h3 class="plant-title">TakeCareOfThePlant</h3>
+                    <div class="server-content">
+                        <h3 class="server-title">Server Bot</h3>
                         
-                        <div class="plant-description">
-                            <p>Инновационный Telegram-бот, где пользователи выращивают виртуальное растение. Увлекательная игра с механикой ухода, системой достижений и социальным взаимодействием.</p>
-                            <p>Каждый день ваше растение требует внимания: полив, удобрение, лечение. Следите за его ростом, открывайте новые виды растений и соревнуйтесь с друзьями!</p>
+                        <div class="server-description">
+                            <p>Инновационный Telegram-бот для чатов, где пользователи могут покупать и майнить на виртуальных серверах. Увлекательная экономическая игра с элементами стратегии и управления.</p>
+                            <p>Каждый сервер требует внимания: они могут ломаться, требуют обновления антивирусных программ и регулярного технического обслуживания. Управляйте своей серверной фермой, улучшайте оборудование и соревнуйтесь с другими игроками!</p>
                         </div>
                         
-                        <div class="plant-release-info">
-                            <div class="plant-release-date">
+                        <div class="server-release-info">
+                            <div class="server-release-date">
                                 <i class="fas fa-calendar-alt"></i> Дата выхода: 01.01.2026
                             </div>
                             
-                            <div class="plant-countdown">
+                            <div class="server-countdown">
                                 <div class="countdown-title">До релиза осталось:</div>
-                                <div class="plant-countdown-grid">
+                                <div class="server-countdown-grid">
                                     <div class="countdown-cell">
                                         <div class="countdown-number" id="days">00</div>
                                         <div class="countdown-label">дней</div>
@@ -1437,7 +1438,7 @@
                                 <h3 class="sponsor-title">Чат "РАЙ"</h3>
                                 <p class="sponsor-description">
                                     Официальный Telegram-бот сообщества "РАЙ". 
-                                    Присоединяйтесь к нашему удивительному сообществу!
+                                    Присоединяйтесь к ЛУЧШЕМУ сообществу которое ненавидит здравый смысл!
                                 </p>
                             </div>
                         </div>
@@ -1485,7 +1486,7 @@
             }, 100);
             
             // 3D ЭФФЕКТ ДЛЯ ИЗОБРАЖЕНИЯ ПРОЕКТА С УВЕЛИЧЕННОЙ ЧУВСТВИТЕЛЬНОСТЬЮ
-            const plantImage = document.getElementById('plantImage3D');
+            const serverImage = document.getElementById('serverImage3D');
             const sponsorImage = document.getElementById('sponsorImage3D');
             
             // Функция для создания 3D эффекта
@@ -1562,7 +1563,7 @@
             }
             
             // Применяем 3D эффект к обоим изображениям
-            create3DEffect(plantImage);
+            create3DEffect(serverImage);
             create3DEffect(sponsorImage);
             
             // Параллакс эффект для фоновых объектов
